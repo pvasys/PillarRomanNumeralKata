@@ -6,7 +6,10 @@ namespace VasysRomanNumeralsKata
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int numeral = 0;
+            Int32.TryParse(args[0], out numeral);
+            string romanNumeral = numeral.ToRomanNumeral();
+            Console.WriteLine(romanNumeral);
         }
     }
 }
