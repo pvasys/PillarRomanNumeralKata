@@ -7,7 +7,8 @@ namespace VasysRomanNumeralsKata
     public class RomanNumeral
     {
         private int? _baseTenRepresentation = null;
-        private int remainder;
+        private int remainder = 0;
+        private StringBuilder romanNumeralResult = new StringBuilder();
 
         public RomanNumeral(int baseTenNumber)
         {
@@ -22,27 +23,22 @@ namespace VasysRomanNumeralsKata
             //if (_baseTenRepresentation < 1 || _baseTenRepresentation >= 4000)
             //    throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
 
-            StringBuilder romanNumeralBuilder = new StringBuilder();
-
             // 400 to 3000
-            var thousandsResult = GenerateNumeralsForGivenRepeatableNumeral(1000, romanNumeralBuilder);
-            romanNumeralBuilder = thousandsResult;
+            CalculateNumeralsForGivenRepeatableNumeral(1000);
 
             // 40 to 300
-            var hundredsResult = GenerateNumeralsForGivenRepeatableNumeral(100, romanNumeralBuilder);
-            romanNumeralBuilder = hundredsResult;
+            CalculateNumeralsForGivenRepeatableNumeral(100);
 
             // 4 to 30
-            var tensResult = GenerateNumeralsForGivenRepeatableNumeral(10, romanNumeralBuilder);
-            romanNumeralBuilder = tensResult;
+            CalculateNumeralsForGivenRepeatableNumeral(10);
 
 
             while (remainder / 1 > 0)
             {
-                romanNumeralBuilder.Append("I");
+                romanNumeralResult.Append("I");
                 remainder -= 1;
             }
-            return romanNumeralBuilder.ToString();
+            return romanNumeralResult.ToString();
         }
 
         private static readonly Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
@@ -60,25 +56,21 @@ namespace VasysRomanNumeralsKata
         private static readonly int factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement = 10;
         private static readonly int factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
 
-        private StringBuilder GenerateNumeralsForGivenRepeatableNumeral(int repeatableValue, StringBuilder romanNumeralBuilder)
+        private void CalculateNumeralsForGivenRepeatableNumeral(int repeatableValue)
         {
             int decrementNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement;
-            var repeatableNumeralResult = GenerateNumeralsForGivenNumeral(repeatableValue, decrementNumeralValue, romanNumeralBuilder);
-            romanNumeralBuilder = repeatableNumeralResult;
+            CalculateNumeralsForGivenNumeral(repeatableValue, decrementNumeralValue);
 
             int partialStepNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndPartialStep;
-            var partialStepNumeralResult = GenerateNumeralsForGivenNumeral(partialStepNumeralValue, decrementNumeralValue, romanNumeralBuilder);
-            romanNumeralBuilder = partialStepNumeralResult;
-
-            return romanNumeralBuilder;
+            CalculateNumeralsForGivenNumeral(partialStepNumeralValue, decrementNumeralValue);
         }
 
-        private StringBuilder GenerateNumeralsForGivenNumeral(int numeralValue, int decrementNumeralValue, StringBuilder romanNumeralBuilder)
+        private void CalculateNumeralsForGivenNumeral(int numeralValue, int decrementNumeralValue)
         {
             char numeralCharacter = numeralLookup[numeralValue];
             while (remainder >= numeralValue)
             {
-                romanNumeralBuilder.Append(numeralCharacter);
+                romanNumeralResult.Append(numeralCharacter);
                 remainder -= numeralValue;
             }
 
@@ -86,12 +78,10 @@ namespace VasysRomanNumeralsKata
             int numeralValueMinusDecrement = numeralValue - decrementNumeralValue;
             if (remainder >= numeralValueMinusDecrement)
             {
-                romanNumeralBuilder.Append(decrementNumeralCharacter);
-                romanNumeralBuilder.Append(numeralCharacter);
+                romanNumeralResult.Append(decrementNumeralCharacter);
+                romanNumeralResult.Append(numeralCharacter);
                 remainder -= numeralValueMinusDecrement;
             }
-
-            return romanNumeralBuilder;
         }
     }
 }
