@@ -8,7 +8,7 @@ namespace VasysRomanNumeralsKataTest
     public class ToRomanNumeralsTest
     {
         [TestMethod]
-        public void ConvertTenToRomanNumeral()
+        public void WhenRomanNumeralIsPassedTenItReturnsX()
         {
             int ten = 10;
             Assert.IsTrue(ten.ToRomanNumeral() == "X");
