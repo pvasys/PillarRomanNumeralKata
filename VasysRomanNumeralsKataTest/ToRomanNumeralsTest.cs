@@ -79,10 +79,12 @@ namespace VasysRomanNumeralsKataTest
         }
 
         [TestMethod]
-        public void WhenRomanNumeralExtensionIsPassedZeroThrowAnException()
+        public void WhenRomanNumeralExtensionIsPassedInvalidValuesThrowAnArgumentOutOfRangeException()
         {
             int zero = 0;
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => zero.ToRomanNumeral());
+            int overMaxNumeral = 4000;
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => overMaxNumeral.ToRomanNumeral());
         }
     }
 }
