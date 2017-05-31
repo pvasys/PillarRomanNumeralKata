@@ -37,13 +37,10 @@ namespace VasysRomanNumeralsKata
             remainder = hundredsResult.Item2;
 
 
-            int numberOfTens = remainder / 10;
-            if (numberOfTens > 0)
+            while(remainder / 10 > 0)
             {
-                for (int i = 0; i < numberOfTens; i++)
-                {
-                    romanNumeralBuilder.Append("X");
-                }
+                romanNumeralBuilder.Append("X");
+                remainder -= 10;
             }
             return romanNumeralBuilder.ToString();
         }
