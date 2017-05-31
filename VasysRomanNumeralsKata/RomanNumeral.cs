@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace VasysRomanNumeralsKata
@@ -13,31 +14,42 @@ namespace VasysRomanNumeralsKata
         public RomanNumeral(int baseTenNumber)
         {
             _baseTenRepresentation = baseTenNumber;
-            if (_baseTenRepresentation < 1 || _baseTenRepresentation >= 4000)
+            int largestSupportedValue = (LargestNumeral() * 4) - 1;
+            if (_baseTenRepresentation < 1 || _baseTenRepresentation > largestSupportedValue)
                 throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
             remainder = (int)_baseTenRepresentation;
         }
 
+        private static int LargestNumeral()
+        {
+            return numeralLookup.Keys.Max();
+        }
+
         public string GenerateRomanNumeralRepresentation()
         {
-            // 4xx to 3xxx
-            CalculateNumeralsForGivenRepeatableNumeral(1000);
+            int currentNumeral = LargestNumeral();
 
-            // 4x to 3xx
-            CalculateNumeralsForGivenRepeatableNumeral(100);
-
-            // 4 to 3x
-            CalculateNumeralsForGivenRepeatableNumeral(10);
-
-
-            while (remainder / 1 > 0)
+            // I originally considered making this a recursive call, but determined that would add
+            //  unnecessary complexity.  
+            while(currentNumeral >= radix)
             {
-                romanNumeralResult.Append("I");
+                CalculateNumeralsForRepeatableNumeralValue(currentNumeral);
+                currentNumeral /= radix;
+            }
+
+            while (remainder > 0)
+            {
+                romanNumeralResult.Append(numeralLookup[1]);
                 remainder -= 1;
             }
             return romanNumeralResult.ToString();
         }
 
+        // Values can be added, provided that they are added in pairs, where the first value is 
+        //  the radix variable times (originally 10x) the largest current value 
+        //  and the second value is the first value divided by the 
+        //  factorDifferenceBetweenRepeatableNumeralAndPartialStep variable (originally 2)
+        //  (e.g. if 1000 is the largest existing value, then 10000 and 5000 can be added).
         private static readonly Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
         {
             {1000, 'M'},
@@ -50,19 +62,19 @@ namespace VasysRomanNumeralsKata
         };
 
         // for theoretical future use, these values could be configurable
-        private static readonly int factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement = 10;
+        private static readonly int radix = 10;
         private static readonly int factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
 
-        private void CalculateNumeralsForGivenRepeatableNumeral(int repeatableValue)
+        private void CalculateNumeralsForRepeatableNumeralValue(int repeatableValue)
         {
-            int decrementNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement;
-            CalculateNumeralsForGivenNumeral(repeatableValue, decrementNumeralValue);
+            int decrementNumeralValue = repeatableValue / radix;
+            CalculateNumeralsForNumeralValue(repeatableValue, decrementNumeralValue);
 
             int partialStepNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndPartialStep;
-            CalculateNumeralsForGivenNumeral(partialStepNumeralValue, decrementNumeralValue);
+            CalculateNumeralsForNumeralValue(partialStepNumeralValue, decrementNumeralValue);
         }
 
-        private void CalculateNumeralsForGivenNumeral(int numeralValue, int decrementNumeralValue)
+        private void CalculateNumeralsForNumeralValue(int numeralValue, int decrementNumeralValue)
         {
             char numeralCharacter = numeralLookup[numeralValue];
             while (remainder >= numeralValue)
