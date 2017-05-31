@@ -61,6 +61,10 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(nine.ToRomanNumeral() == "IX");
             int six = 6;
             Assert.IsTrue(six.ToRomanNumeral() == "VI");
+            int four = 4;
+            Assert.IsTrue(four.ToRomanNumeral() == "IV");
+            int three = 3;
+            Assert.IsTrue(three.ToRomanNumeral() == "III");
         }
     }
 }
