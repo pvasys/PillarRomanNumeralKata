@@ -60,37 +60,35 @@ namespace VasysRomanNumeralsKata
 
         private Tuple<StringBuilder, int> GenerateNumeralsForGivenRepeatableNumeral(int repeatableValue, StringBuilder romanNumeralBuilder, int remainder)
         {
-            char repeatableNumeral = numeralLookup[repeatableValue];
-            while (remainder >= repeatableValue)
+            int decrementNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement;
+            var repeatableNumeralValueResult = GenerateNumeralsForGivenNumeral(repeatableValue, decrementNumeralValue, remainder, romanNumeralBuilder);
+            romanNumeralBuilder = repeatableNumeralValueResult.Item1;
+            remainder = repeatableNumeralValueResult.Item2;
+
+            int partialStepNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndPartialStep;
+            var partialStepNumeralValueResult = GenerateNumeralsForGivenNumeral(partialStepNumeralValue, decrementNumeralValue, remainder, romanNumeralBuilder);
+            romanNumeralBuilder = partialStepNumeralValueResult.Item1;
+            remainder = partialStepNumeralValueResult.Item2;
+
+            return Tuple.Create(romanNumeralBuilder, remainder);
+        }
+
+        private Tuple<StringBuilder, int> GenerateNumeralsForGivenNumeral(int numeralValue, int decrementNumeralValue, int remainder, StringBuilder romanNumeralBuilder)
+        {
+            char numeralCharacter = numeralLookup[numeralValue];
+            while (remainder >= numeralValue)
             {
-                romanNumeralBuilder.Append(repeatableNumeral);
-                remainder -= repeatableValue;
+                romanNumeralBuilder.Append(numeralCharacter);
+                remainder -= numeralValue;
             }
 
-            int decrementValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement;
-            char decrementNumeral = numeralLookup[decrementValue];
-            int repeatableValueMinusDecrement = repeatableValue - decrementValue;
-            if (remainder >= repeatableValueMinusDecrement)
+            char decrementNumeralCharacter = numeralLookup[decrementNumeralValue];
+            int numeralValueMinusDecrement = numeralValue - decrementNumeralValue;
+            if (remainder >= numeralValueMinusDecrement)
             {
-                romanNumeralBuilder.Append(decrementNumeral);
-                romanNumeralBuilder.Append(repeatableNumeral);
-                remainder -= repeatableValueMinusDecrement;
-            }
-
-            int halfRepeatableValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndPartialStep;
-            char halfRepeatableNumeral = numeralLookup[halfRepeatableValue];
-            if (remainder >= halfRepeatableValue)
-            {
-                romanNumeralBuilder.Append(halfRepeatableNumeral);
-                remainder -= halfRepeatableValue;
-            }
-
-            int halfRepeatableMinusDecrement = halfRepeatableValue - decrementValue;
-            if (remainder >= halfRepeatableMinusDecrement)
-            {
-                romanNumeralBuilder.Append(decrementNumeral);
-                romanNumeralBuilder.Append(halfRepeatableNumeral);
-                remainder -= halfRepeatableMinusDecrement;
+                romanNumeralBuilder.Append(decrementNumeralCharacter);
+                romanNumeralBuilder.Append(numeralCharacter);
+                remainder -= numeralValueMinusDecrement;
             }
 
             return Tuple.Create(romanNumeralBuilder, remainder);
