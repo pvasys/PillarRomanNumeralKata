@@ -9,7 +9,7 @@ namespace VasysRomanNumeralsKata
         public static string ToRomanNumeral(this int baseTenNumber)
         {
             RomanNumeral romanNumeral = new RomanNumeral(baseTenNumber);
-            return romanNumeral.GenerateRomanNumeralRepresntation();
+            return romanNumeral.GenerateRomanNumeralRepresentation();
         }
     }
 }

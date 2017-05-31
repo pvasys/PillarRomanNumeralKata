@@ -12,33 +12,19 @@ namespace VasysRomanNumeralsKata
             _baseTenRepresentation = baseTenNumber;
         }
 
-        public string GenerateRomanNumeralRepresntation()
+        public string GenerateRomanNumeralRepresentation()
         {
             StringBuilder romanNumeralBuilder = new StringBuilder();
             int remainder = (int)_baseTenRepresentation;
-            while(remainder / 1000 > 0)
-            {
-                romanNumeralBuilder.Append("M");
-                remainder -= 1000;
-            }
 
-            if (remainder >= 900)
-            {
-                romanNumeralBuilder.Append("CM");
-                remainder -= 900;
-            }
+            RepeatableNumeralSet thousandsNumeralSet = new RepeatableNumeralSet();
+            thousandsNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'M', Value = 1000 };
+            thousandsNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'D', Value = 500 };
+            thousandsNumeralSet.NextLowestRepeatableNumeral = new NumeralValuePair() { Numeral = 'C', Value = 100 };
 
-            if(remainder >= 500)
-            {
-                romanNumeralBuilder.Append("D");
-                remainder -= 500;
-            }
-
-            if (remainder >= 400)
-            {
-                romanNumeralBuilder.Append("CD");
-                remainder -= 400;
-            }
+            var thousandsResult = GenerateNumeralsForGivenRepeatableNumeral(thousandsNumeralSet, romanNumeralBuilder, remainder);
+            romanNumeralBuilder = thousandsResult.Item1;
+            remainder = thousandsResult.Item2;
 
             while(remainder >= 100)
             {
@@ -55,6 +41,58 @@ namespace VasysRomanNumeralsKata
                 }
             }
             return romanNumeralBuilder.ToString();
+        }
+
+        private struct NumeralValuePair
+        {
+            public char Numeral { get; set; }
+            public int Value { get; set; }
+        }
+
+        private struct RepeatableNumeralSet
+        {
+            public NumeralValuePair RepeatableNumeral { get; set; }
+            public NumeralValuePair HalfRepeatableNumeral { get; set; }
+            public NumeralValuePair NextLowestRepeatableNumeral { get; set; }
+        }
+
+        private Tuple<StringBuilder, int> GenerateNumeralsForGivenRepeatableNumeral(RepeatableNumeralSet repeatableNumeralSet, StringBuilder romanNumeralBuilder, int remainder)
+        {
+            int repeatableNumeralValue = repeatableNumeralSet.RepeatableNumeral.Value;
+            char repeatableNumeralChar = repeatableNumeralSet.RepeatableNumeral.Numeral;
+            while (remainder / repeatableNumeralValue > 0)
+            {
+                romanNumeralBuilder.Append(repeatableNumeralChar);
+                remainder -= repeatableNumeralValue;
+            }
+
+            int nextLowestRepeatableNumeralValue = repeatableNumeralSet.NextLowestRepeatableNumeral.Value;
+            char nextLowestRepeatableNumeralChar = repeatableNumeralSet.NextLowestRepeatableNumeral.Numeral;
+            int repeatableMinusDecrement = repeatableNumeralValue - nextLowestRepeatableNumeralValue;
+            if (remainder >= repeatableMinusDecrement)
+            {
+                romanNumeralBuilder.Append(nextLowestRepeatableNumeralChar);
+                romanNumeralBuilder.Append(repeatableNumeralChar);
+                remainder -= repeatableMinusDecrement;
+            }
+
+            int halfRepeatableNumeralValue = repeatableNumeralSet.HalfRepeatableNumeral.Value;
+            char halfRepeatableNumeralChar = repeatableNumeralSet.HalfRepeatableNumeral.Numeral;
+            if (remainder >= halfRepeatableNumeralValue)
+            {
+                romanNumeralBuilder.Append(halfRepeatableNumeralChar);
+                remainder -= halfRepeatableNumeralValue;
+            }
+
+            int halfRepeatableMinusDecrement = halfRepeatableNumeralValue - nextLowestRepeatableNumeralValue;
+            if (remainder >= halfRepeatableMinusDecrement)
+            {
+                romanNumeralBuilder.Append(nextLowestRepeatableNumeralChar);
+                romanNumeralBuilder.Append(halfRepeatableNumeralChar);
+                remainder -= halfRepeatableMinusDecrement;
+            }
+
+            return Tuple.Create(romanNumeralBuilder, remainder);
         }
     }
 }
