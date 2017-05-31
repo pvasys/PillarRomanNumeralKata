@@ -20,3 +20,7 @@ To run the application:
 - Navigate to the location of the .sln file
 - Navigate to the subfolder VasysRomanNumeralsKata
 - type: dotnet run <arabic number>
+
+
+Next Steps:
+While the solution is overkill for the scope of the problem, I took the opportunity to demonstrate steps toward an ideal solution.
