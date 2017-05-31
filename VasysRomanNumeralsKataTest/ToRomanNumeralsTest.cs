@@ -33,6 +33,10 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(threeHundred.ToRomanNumeral() == "CCC");
             int twoThousand = 2000;
             Assert.IsTrue(twoThousand.ToRomanNumeral() == "MM");
+            int sixHundred = 600;
+            Assert.IsTrue(sixHundred.ToRomanNumeral() == "DC");
+            int sevenHundred = 700;
+            Assert.IsTrue(sevenHundred.ToRomanNumeral() == "DCC");
         }
     }
 }
