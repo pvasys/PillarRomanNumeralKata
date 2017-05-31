@@ -7,33 +7,34 @@ namespace VasysRomanNumeralsKata
     public class RomanNumeral
     {
         private int? _baseTenRepresentation = null;
+        private int remainder;
+
         public RomanNumeral(int baseTenNumber)
         {
             _baseTenRepresentation = baseTenNumber;
+            if (_baseTenRepresentation < 1 || _baseTenRepresentation >= 4000)
+                throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
+            remainder = (int)_baseTenRepresentation;
         }
 
         public string GenerateRomanNumeralRepresentation()
         {
-            if (_baseTenRepresentation < 1 || _baseTenRepresentation >= 4000)
-                throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
+            //if (_baseTenRepresentation < 1 || _baseTenRepresentation >= 4000)
+            //    throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
 
             StringBuilder romanNumeralBuilder = new StringBuilder();
-            int remainder = (int)_baseTenRepresentation;
 
             // 400 to 3000
-            var thousandsResult = GenerateNumeralsForGivenRepeatableNumeral(1000, romanNumeralBuilder, remainder);
-            romanNumeralBuilder = thousandsResult.Item1;
-            remainder = thousandsResult.Item2;
+            var thousandsResult = GenerateNumeralsForGivenRepeatableNumeral(1000, romanNumeralBuilder);
+            romanNumeralBuilder = thousandsResult;
 
             // 40 to 300
-            var hundredsResult = GenerateNumeralsForGivenRepeatableNumeral(100, romanNumeralBuilder, remainder);
-            romanNumeralBuilder = hundredsResult.Item1;
-            remainder = hundredsResult.Item2;
+            var hundredsResult = GenerateNumeralsForGivenRepeatableNumeral(100, romanNumeralBuilder);
+            romanNumeralBuilder = hundredsResult;
 
             // 4 to 30
-            var tensResult = GenerateNumeralsForGivenRepeatableNumeral(10, romanNumeralBuilder, remainder);
-            romanNumeralBuilder = tensResult.Item1;
-            remainder = tensResult.Item2;
+            var tensResult = GenerateNumeralsForGivenRepeatableNumeral(10, romanNumeralBuilder);
+            romanNumeralBuilder = tensResult;
 
 
             while (remainder / 1 > 0)
@@ -55,25 +56,24 @@ namespace VasysRomanNumeralsKata
             {1, 'I'}
         };
 
+        // for theoretical future use, these values could be configurable
         private static readonly int factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement = 10;
         private static readonly int factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
 
-        private Tuple<StringBuilder, int> GenerateNumeralsForGivenRepeatableNumeral(int repeatableValue, StringBuilder romanNumeralBuilder, int remainder)
+        private StringBuilder GenerateNumeralsForGivenRepeatableNumeral(int repeatableValue, StringBuilder romanNumeralBuilder)
         {
             int decrementNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement;
-            var repeatableNumeralValueResult = GenerateNumeralsForGivenNumeral(repeatableValue, decrementNumeralValue, remainder, romanNumeralBuilder);
-            romanNumeralBuilder = repeatableNumeralValueResult.Item1;
-            remainder = repeatableNumeralValueResult.Item2;
+            var repeatableNumeralResult = GenerateNumeralsForGivenNumeral(repeatableValue, decrementNumeralValue, romanNumeralBuilder);
+            romanNumeralBuilder = repeatableNumeralResult;
 
             int partialStepNumeralValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndPartialStep;
-            var partialStepNumeralValueResult = GenerateNumeralsForGivenNumeral(partialStepNumeralValue, decrementNumeralValue, remainder, romanNumeralBuilder);
-            romanNumeralBuilder = partialStepNumeralValueResult.Item1;
-            remainder = partialStepNumeralValueResult.Item2;
+            var partialStepNumeralResult = GenerateNumeralsForGivenNumeral(partialStepNumeralValue, decrementNumeralValue, romanNumeralBuilder);
+            romanNumeralBuilder = partialStepNumeralResult;
 
-            return Tuple.Create(romanNumeralBuilder, remainder);
+            return romanNumeralBuilder;
         }
 
-        private Tuple<StringBuilder, int> GenerateNumeralsForGivenNumeral(int numeralValue, int decrementNumeralValue, int remainder, StringBuilder romanNumeralBuilder)
+        private StringBuilder GenerateNumeralsForGivenNumeral(int numeralValue, int decrementNumeralValue, StringBuilder romanNumeralBuilder)
         {
             char numeralCharacter = numeralLookup[numeralValue];
             while (remainder >= numeralValue)
@@ -91,7 +91,7 @@ namespace VasysRomanNumeralsKata
                 remainder -= numeralValueMinusDecrement;
             }
 
-            return Tuple.Create(romanNumeralBuilder, remainder);
+            return romanNumeralBuilder;
         }
     }
 }
