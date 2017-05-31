@@ -43,7 +43,7 @@ namespace VasysRomanNumeralsKata
                 remainder -= 400;
             }
 
-            if (remainder >= 100)
+            while(remainder >= 100)
             {
                 romanNumeralBuilder.Append("C");
                 remainder -= 100;
