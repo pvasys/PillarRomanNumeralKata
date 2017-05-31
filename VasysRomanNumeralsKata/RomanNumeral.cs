@@ -14,6 +14,9 @@ namespace VasysRomanNumeralsKata
 
         public string GenerateRomanNumeralRepresentation()
         {
+            if (_baseTenRepresentation < 1)
+                throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
+
             StringBuilder romanNumeralBuilder = new StringBuilder();
             int remainder = (int)_baseTenRepresentation;
 

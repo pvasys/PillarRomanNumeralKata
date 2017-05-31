@@ -77,5 +77,12 @@ namespace VasysRomanNumeralsKataTest
             int nineteenEightNine = 1989;
             Assert.IsTrue(nineteenEightNine.ToRomanNumeral() == "MCMLXXXIX");
         }
+
+        [TestMethod]
+        public void WhenRomanNumeralExtensionIsPassedZeroThrowAnException()
+        {
+            int zero = 0;
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => zero.ToRomanNumeral());
+        }
     }
 }
