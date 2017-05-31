@@ -8,14 +8,14 @@ namespace VasysRomanNumeralsKataTest
     public class ToRomanNumeralsTest
     {
         [TestMethod]
-        public void WhenRomanNumeralIsPassedTenItReturnsX()
+        public void WhenRomanNumeralExtensionIsPassedTenItReturnsX()
         {
             int ten = 10;
             Assert.IsTrue(ten.ToRomanNumeral() == "X");
         }
 
         [TestMethod]
-        public void WhenRomanNumeralIsPassedAnIntegerItReturnsARomanNumeral()
+        public void WhenRomanNumeralExtensionIsPassedAnIntegerItReturnsARomanNumeral()
         {
             int oneThousand = 1000;
             Assert.IsTrue(oneThousand.ToRomanNumeral() == "M");
