@@ -23,4 +23,6 @@ To run the application:
 
 
 Next Steps:
-While the solution is overkill for the scope of the problem, I took the opportunity to demonstrate steps toward an ideal solution.
+While the solution is overkill for the scope of the problem, I took the opportunity to demonstrate steps toward an ideal and flexible solution.
+
+Next steps might involve creating a desktop or web UI to leverage the functionality.  Adding a CI solution that builds after every commit to master and runs tests would also be valuable.
