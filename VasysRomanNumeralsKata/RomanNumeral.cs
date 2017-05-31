@@ -24,6 +24,13 @@ namespace VasysRomanNumeralsKata
                 }
             }
             int remainder = (int)_baseTenRepresentation % 1000;
+
+            if (remainder >= 900)
+            {
+                romanNumeralBuilder.Append("CM");
+                remainder -= 900;
+            }
+
             int numberOfTens = remainder / 10;
             if (numberOfTens > 0)
             {
