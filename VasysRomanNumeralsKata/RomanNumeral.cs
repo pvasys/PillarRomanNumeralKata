@@ -15,15 +15,12 @@ namespace VasysRomanNumeralsKata
         public string GenerateRomanNumeralRepresntation()
         {
             StringBuilder romanNumeralBuilder = new StringBuilder();
-            int numberOfThousands = (int)_baseTenRepresentation / 1000;
-            if (numberOfThousands > 0)
+            int remainder = (int)_baseTenRepresentation;
+            while(remainder / 1000 > 0)
             {
-                for(int i = 0; i < numberOfThousands; i++)
-                {
-                    romanNumeralBuilder.Append("M");
-                }
+                romanNumeralBuilder.Append("M");
+                remainder -= 1000;
             }
-            int remainder = (int)_baseTenRepresentation % 1000;
 
             if (remainder >= 900)
             {
