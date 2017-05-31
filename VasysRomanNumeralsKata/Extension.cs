@@ -8,7 +8,8 @@ namespace VasysRomanNumeralsKata
     {
         public static string ToRomanNumeral(this int baseTenNumber)
         {
-            return "X";
+            RomanNumeral romanNumeral = new RomanNumeral(baseTenNumber);
+            return romanNumeral.GenerateRomanNumeralRepresntation();
         }
     }
 }
