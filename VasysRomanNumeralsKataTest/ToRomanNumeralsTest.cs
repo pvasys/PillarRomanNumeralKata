@@ -40,5 +40,12 @@ namespace VasysRomanNumeralsKataTest
             int eightHundred = 800;
             Assert.IsTrue(eightHundred.ToRomanNumeral() == "DCCC");
         }
+
+        [TestMethod]
+        public void WhenRomanNumeralExtensionIsPassedNumbersDivisibleByTenItReturnsARomanNumeral()
+        {
+            int ninety = 90;
+            Assert.IsTrue(ninety.ToRomanNumeral() == "XC");
+        }
     }
 }

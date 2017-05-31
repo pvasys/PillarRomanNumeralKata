@@ -26,11 +26,16 @@ namespace VasysRomanNumeralsKata
             romanNumeralBuilder = thousandsResult.Item1;
             remainder = thousandsResult.Item2;
 
-            while(remainder >= 100)
-            {
-                romanNumeralBuilder.Append("C");
-                remainder -= 100;
-            }
+
+            RepeatableNumeralSet hundredsNumeralSet = new RepeatableNumeralSet();
+            hundredsNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'C', Value = 100 };
+            hundredsNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'L', Value = 50 };
+            hundredsNumeralSet.NextLowestRepeatableNumeral = new NumeralValuePair() { Numeral = 'X', Value = 10 };
+
+            var hundredsResult = GenerateNumeralsForGivenRepeatableNumeral(hundredsNumeralSet, romanNumeralBuilder, remainder);
+            romanNumeralBuilder = hundredsResult.Item1;
+            remainder = hundredsResult.Item2;
+
 
             int numberOfTens = remainder / 10;
             if (numberOfTens > 0)
