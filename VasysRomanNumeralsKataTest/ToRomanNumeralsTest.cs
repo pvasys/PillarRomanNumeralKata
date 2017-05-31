@@ -53,5 +53,12 @@ namespace VasysRomanNumeralsKataTest
             int thirty = 30;
             Assert.IsTrue(thirty.ToRomanNumeral() == "XXX");
         }
+
+        [TestMethod]
+        public void WhenRomanNumeralExtensionIsPassedSingleDigitNumbersItReturnsARomanNumeral()
+        {
+            int nine = 9;
+            Assert.IsTrue(nine.ToRomanNumeral() == "IX");
+        }
     }
 }

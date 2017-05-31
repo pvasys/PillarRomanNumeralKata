@@ -17,6 +17,7 @@ namespace VasysRomanNumeralsKata
             StringBuilder romanNumeralBuilder = new StringBuilder();
             int remainder = (int)_baseTenRepresentation;
 
+            // 400 to 3000
             RepeatableNumeralSet thousandsNumeralSet = new RepeatableNumeralSet();
             thousandsNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'M', Value = 1000 };
             thousandsNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'D', Value = 500 };
@@ -26,7 +27,7 @@ namespace VasysRomanNumeralsKata
             romanNumeralBuilder = thousandsResult.Item1;
             remainder = thousandsResult.Item2;
 
-
+            // 40 to 300
             RepeatableNumeralSet hundredsNumeralSet = new RepeatableNumeralSet();
             hundredsNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'C', Value = 100 };
             hundredsNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'L', Value = 50 };
@@ -36,12 +37,22 @@ namespace VasysRomanNumeralsKata
             romanNumeralBuilder = hundredsResult.Item1;
             remainder = hundredsResult.Item2;
 
+            // 4 to 30
+            RepeatableNumeralSet tensNumeralSet = new RepeatableNumeralSet();
+            tensNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'X', Value = 10 };
+            tensNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'V', Value = 5 };
+            tensNumeralSet.NextLowestRepeatableNumeral = new NumeralValuePair() { Numeral = 'I', Value = 1 };
 
-            while(remainder / 10 > 0)
-            {
-                romanNumeralBuilder.Append("X");
-                remainder -= 10;
-            }
+            var tensResult = GenerateNumeralsForGivenRepeatableNumeral(tensNumeralSet, romanNumeralBuilder, remainder);
+            romanNumeralBuilder = tensResult.Item1;
+            remainder = tensResult.Item2;
+
+
+            //while (remainder / 10 > 0)
+            //{
+            //    romanNumeralBuilder.Append("X");
+            //    remainder -= 10;
+            //}
             return romanNumeralBuilder.ToString();
         }
 
