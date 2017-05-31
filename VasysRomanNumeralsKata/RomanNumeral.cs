@@ -20,6 +20,28 @@ namespace VasysRomanNumeralsKata
             remainder = (int)_baseTenRepresentation;
         }
 
+        // Values can be added, provided that they are added in pairs, where the first value is 
+        //  the radix variable times (originally 10x) the largest current value 
+        //  and the second value is the first value divided by the 
+        //  factorDifferenceBetweenRepeatableNumeralAndPartialStep variable (originally 2)
+        //  (e.g. if 1000 is the largest existing value, then 10000 and 5000 can be added).
+        private static readonly Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
+        {
+            {1000, 'M'},
+            {500, 'D'},
+            {100, 'C'},
+            {50, 'L'},
+            {10, 'X'},
+            {5, 'V'},
+            {1, 'I'}
+        };
+
+        // For theoretical future use, these values could be configurable.  Radix is much more likely to be configured,
+        //  but factorDifferenceBetweenRepeatableNumeralAndPartialStep might be considered for larger radix values.
+        //  The radix must always be evenly divisible by the factorDifferenceBetweenRepeatableNumeralAndPartialStep.
+        private static readonly int radix = 10;
+        private static readonly int factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
+
         private static int LargestNumeral()
         {
             return numeralLookup.Keys.Max();
@@ -44,26 +66,6 @@ namespace VasysRomanNumeralsKata
             }
             return romanNumeralResult.ToString();
         }
-
-        // Values can be added, provided that they are added in pairs, where the first value is 
-        //  the radix variable times (originally 10x) the largest current value 
-        //  and the second value is the first value divided by the 
-        //  factorDifferenceBetweenRepeatableNumeralAndPartialStep variable (originally 2)
-        //  (e.g. if 1000 is the largest existing value, then 10000 and 5000 can be added).
-        private static readonly Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
-        {
-            {1000, 'M'},
-            {500, 'D'},
-            {100, 'C'},
-            {50, 'L'},
-            {10, 'X'},
-            {5, 'V'},
-            {1, 'I'}
-        };
-
-        // for theoretical future use, these values could be configurable
-        private static readonly int radix = 10;
-        private static readonly int factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
 
         private void CalculateNumeralsForRepeatableNumeralValue(int repeatableValue)
         {
