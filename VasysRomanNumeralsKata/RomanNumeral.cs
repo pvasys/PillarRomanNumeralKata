@@ -44,7 +44,7 @@ namespace VasysRomanNumeralsKata
             return romanNumeralBuilder.ToString();
         }
 
-        private static Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
+        private static readonly Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
         {
             {1000, 'M'},
             {500, 'D'},
@@ -55,16 +55,19 @@ namespace VasysRomanNumeralsKata
             {1, 'I'}
         };
 
+        private static readonly int factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement = 10;
+        private static readonly int factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
+
         private Tuple<StringBuilder, int> GenerateNumeralsForGivenRepeatableNumeral(int repeatableValue, StringBuilder romanNumeralBuilder, int remainder)
         {
             char repeatableNumeral = numeralLookup[repeatableValue];
-            while (remainder / repeatableValue > 0)
+            while (remainder >= repeatableValue)
             {
                 romanNumeralBuilder.Append(repeatableNumeral);
                 remainder -= repeatableValue;
             }
 
-            int decrementValue = repeatableValue / 10;
+            int decrementValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndComplementaryDecrement;
             char decrementNumeral = numeralLookup[decrementValue];
             int repeatableValueMinusDecrement = repeatableValue - decrementValue;
             if (remainder >= repeatableValueMinusDecrement)
@@ -74,7 +77,7 @@ namespace VasysRomanNumeralsKata
                 remainder -= repeatableValueMinusDecrement;
             }
 
-            int halfRepeatableValue = repeatableValue / 2;
+            int halfRepeatableValue = repeatableValue / factorDifferenceBetweenRepeatableNumeralAndPartialStep;
             char halfRepeatableNumeral = numeralLookup[halfRepeatableValue];
             if (remainder >= halfRepeatableValue)
             {
