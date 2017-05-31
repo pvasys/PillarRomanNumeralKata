@@ -25,6 +25,8 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(fiveHundred.ToRomanNumeral() == "D");
             int fourHundred = 400;
             Assert.IsTrue(fourHundred.ToRomanNumeral() == "CD");
+            int oneHundred = 100;
+            Assert.IsTrue(oneHundred.ToRomanNumeral() == "C");
         }
     }
 }
