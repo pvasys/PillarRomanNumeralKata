@@ -76,6 +76,8 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(oneThousandSixtySix.ToRomanNumeral() == "MLXVI");
             int nineteenEightNine = 1989;
             Assert.IsTrue(nineteenEightNine.ToRomanNumeral() == "MCMLXXXIX");
+            int maxNumeral = 3999;
+            Assert.IsTrue(maxNumeral.ToRomanNumeral() == "MMMCMXCIX");
         }
 
         [TestMethod]
