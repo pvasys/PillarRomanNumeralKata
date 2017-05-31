@@ -48,11 +48,11 @@ namespace VasysRomanNumeralsKata
             remainder = tensResult.Item2;
 
 
-            //while (remainder / 10 > 0)
-            //{
-            //    romanNumeralBuilder.Append("X");
-            //    remainder -= 10;
-            //}
+            while (remainder / 1 > 0)
+            {
+                romanNumeralBuilder.Append("I");
+                remainder -= 1;
+            }
             return romanNumeralBuilder.ToString();
         }
 
