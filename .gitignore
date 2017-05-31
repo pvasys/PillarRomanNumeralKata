@@ -2,4 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/VasysRomanNumeralsKata/bin/Debug/netcoreapp1.1
+/VasysRomanNumeralsKata/bin
+/VasysRomanNumeralsKata/obj
+/VasysRomanNumeralsKataTest/bin
+/VasysRomanNumeralsKataTest/obj
+*.suo
