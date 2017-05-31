@@ -15,7 +15,7 @@ namespace VasysRomanNumeralsKataTest
         }
 
         [TestMethod]
-        public void WhenRomanNumeralExtensionIsPassedAnIntegerItReturnsARomanNumeral()
+        public void WhenRomanNumeralExtensionIsPassedNumbersDivisibleByOneHundredItReturnsARomanNumeral()
         {
             int oneThousand = 1000;
             Assert.IsTrue(oneThousand.ToRomanNumeral() == "M");
@@ -23,6 +23,8 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(nineHundred.ToRomanNumeral() == "CM");
             int fiveHundred = 500;
             Assert.IsTrue(fiveHundred.ToRomanNumeral() == "D");
+            int fourHundred = 400;
+            Assert.IsTrue(fourHundred.ToRomanNumeral() == "CD");
         }
     }
 }
