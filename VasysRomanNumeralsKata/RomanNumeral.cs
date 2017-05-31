@@ -31,6 +31,12 @@ namespace VasysRomanNumeralsKata
                 remainder -= 900;
             }
 
+            if(remainder >= 500)
+            {
+                romanNumeralBuilder.Append("D");
+                remainder -= 500;
+            }
+
             int numberOfTens = remainder / 10;
             if (numberOfTens > 0)
             {

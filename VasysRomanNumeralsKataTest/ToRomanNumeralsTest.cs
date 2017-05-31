@@ -21,6 +21,8 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(oneThousand.ToRomanNumeral() == "M");
             int nineHundred = 900;
             Assert.IsTrue(nineHundred.ToRomanNumeral() == "CM");
+            int fiveHundred = 500;
+            Assert.IsTrue(fiveHundred.ToRomanNumeral() == "D");
         }
     }
 }
