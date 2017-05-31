@@ -21,32 +21,17 @@ namespace VasysRomanNumeralsKata
             int remainder = (int)_baseTenRepresentation;
 
             // 400 to 3000
-            RepeatableNumeralSet thousandsNumeralSet = new RepeatableNumeralSet();
-            thousandsNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'M', Value = 1000 };
-            thousandsNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'D', Value = 500 };
-            thousandsNumeralSet.NextLowestRepeatableNumeral = new NumeralValuePair() { Numeral = 'C', Value = 100 };
-
-            var thousandsResult = GenerateNumeralsForGivenRepeatableNumeral(thousandsNumeralSet, romanNumeralBuilder, remainder);
+            var thousandsResult = GenerateNumeralsForGivenRepeatableNumeral(1000, romanNumeralBuilder, remainder);
             romanNumeralBuilder = thousandsResult.Item1;
             remainder = thousandsResult.Item2;
 
             // 40 to 300
-            RepeatableNumeralSet hundredsNumeralSet = new RepeatableNumeralSet();
-            hundredsNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'C', Value = 100 };
-            hundredsNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'L', Value = 50 };
-            hundredsNumeralSet.NextLowestRepeatableNumeral = new NumeralValuePair() { Numeral = 'X', Value = 10 };
-
-            var hundredsResult = GenerateNumeralsForGivenRepeatableNumeral(hundredsNumeralSet, romanNumeralBuilder, remainder);
+            var hundredsResult = GenerateNumeralsForGivenRepeatableNumeral(100, romanNumeralBuilder, remainder);
             romanNumeralBuilder = hundredsResult.Item1;
             remainder = hundredsResult.Item2;
 
             // 4 to 30
-            RepeatableNumeralSet tensNumeralSet = new RepeatableNumeralSet();
-            tensNumeralSet.RepeatableNumeral = new NumeralValuePair() { Numeral = 'X', Value = 10 };
-            tensNumeralSet.HalfRepeatableNumeral = new NumeralValuePair() { Numeral = 'V', Value = 5 };
-            tensNumeralSet.NextLowestRepeatableNumeral = new NumeralValuePair() { Numeral = 'I', Value = 1 };
-
-            var tensResult = GenerateNumeralsForGivenRepeatableNumeral(tensNumeralSet, romanNumeralBuilder, remainder);
+            var tensResult = GenerateNumeralsForGivenRepeatableNumeral(10, romanNumeralBuilder, remainder);
             romanNumeralBuilder = tensResult.Item1;
             remainder = tensResult.Item2;
 
@@ -59,52 +44,49 @@ namespace VasysRomanNumeralsKata
             return romanNumeralBuilder.ToString();
         }
 
-        private struct NumeralValuePair
+        private static Dictionary<int, char> numeralLookup = new Dictionary<int, char>()
         {
-            public char Numeral { get; set; }
-            public int Value { get; set; }
-        }
+            {1000, 'M'},
+            {500, 'D'},
+            {100, 'C'},
+            {50, 'L'},
+            {10, 'X'},
+            {5, 'V'},
+            {1, 'I'}
+        };
 
-        private struct RepeatableNumeralSet
+        private Tuple<StringBuilder, int> GenerateNumeralsForGivenRepeatableNumeral(int repeatableValue, StringBuilder romanNumeralBuilder, int remainder)
         {
-            public NumeralValuePair RepeatableNumeral { get; set; }
-            public NumeralValuePair HalfRepeatableNumeral { get; set; }
-            public NumeralValuePair NextLowestRepeatableNumeral { get; set; }
-        }
-
-        private Tuple<StringBuilder, int> GenerateNumeralsForGivenRepeatableNumeral(RepeatableNumeralSet repeatableNumeralSet, StringBuilder romanNumeralBuilder, int remainder)
-        {
-            int repeatableNumeralValue = repeatableNumeralSet.RepeatableNumeral.Value;
-            char repeatableNumeralChar = repeatableNumeralSet.RepeatableNumeral.Numeral;
-            while (remainder / repeatableNumeralValue > 0)
+            char repeatableNumeral = numeralLookup[repeatableValue];
+            while (remainder / repeatableValue > 0)
             {
-                romanNumeralBuilder.Append(repeatableNumeralChar);
-                remainder -= repeatableNumeralValue;
+                romanNumeralBuilder.Append(repeatableNumeral);
+                remainder -= repeatableValue;
             }
 
-            int nextLowestRepeatableNumeralValue = repeatableNumeralSet.NextLowestRepeatableNumeral.Value;
-            char nextLowestRepeatableNumeralChar = repeatableNumeralSet.NextLowestRepeatableNumeral.Numeral;
-            int repeatableMinusDecrement = repeatableNumeralValue - nextLowestRepeatableNumeralValue;
-            if (remainder >= repeatableMinusDecrement)
+            int decrementValue = repeatableValue / 10;
+            char decrementNumeral = numeralLookup[decrementValue];
+            int repeatableValueMinusDecrement = repeatableValue - decrementValue;
+            if (remainder >= repeatableValueMinusDecrement)
             {
-                romanNumeralBuilder.Append(nextLowestRepeatableNumeralChar);
-                romanNumeralBuilder.Append(repeatableNumeralChar);
-                remainder -= repeatableMinusDecrement;
+                romanNumeralBuilder.Append(decrementNumeral);
+                romanNumeralBuilder.Append(repeatableNumeral);
+                remainder -= repeatableValueMinusDecrement;
             }
 
-            int halfRepeatableNumeralValue = repeatableNumeralSet.HalfRepeatableNumeral.Value;
-            char halfRepeatableNumeralChar = repeatableNumeralSet.HalfRepeatableNumeral.Numeral;
-            if (remainder >= halfRepeatableNumeralValue)
+            int halfRepeatableValue = repeatableValue / 2;
+            char halfRepeatableNumeral = numeralLookup[halfRepeatableValue];
+            if (remainder >= halfRepeatableValue)
             {
-                romanNumeralBuilder.Append(halfRepeatableNumeralChar);
-                remainder -= halfRepeatableNumeralValue;
+                romanNumeralBuilder.Append(halfRepeatableNumeral);
+                remainder -= halfRepeatableValue;
             }
 
-            int halfRepeatableMinusDecrement = halfRepeatableNumeralValue - nextLowestRepeatableNumeralValue;
+            int halfRepeatableMinusDecrement = halfRepeatableValue - decrementValue;
             if (remainder >= halfRepeatableMinusDecrement)
             {
-                romanNumeralBuilder.Append(nextLowestRepeatableNumeralChar);
-                romanNumeralBuilder.Append(halfRepeatableNumeralChar);
+                romanNumeralBuilder.Append(decrementNumeral);
+                romanNumeralBuilder.Append(halfRepeatableNumeral);
                 remainder -= halfRepeatableMinusDecrement;
             }
 
