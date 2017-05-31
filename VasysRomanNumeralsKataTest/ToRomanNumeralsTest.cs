@@ -46,6 +46,10 @@ namespace VasysRomanNumeralsKataTest
         {
             int ninety = 90;
             Assert.IsTrue(ninety.ToRomanNumeral() == "XC");
+            int sixty = 60;
+            Assert.IsTrue(sixty.ToRomanNumeral() == "LX");
+            int forty = 40;
+            Assert.IsTrue(forty.ToRomanNumeral() == "XL");
         }
     }
 }
