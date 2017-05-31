@@ -20,16 +20,13 @@ namespace VasysRomanNumeralsKata
 
         public string GenerateRomanNumeralRepresentation()
         {
-            //if (_baseTenRepresentation < 1 || _baseTenRepresentation >= 4000)
-            //    throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
-
-            // 400 to 3000
+            // 4xx to 3xxx
             CalculateNumeralsForGivenRepeatableNumeral(1000);
 
-            // 40 to 300
+            // 4x to 3xx
             CalculateNumeralsForGivenRepeatableNumeral(100);
 
-            // 4 to 30
+            // 4 to 3x
             CalculateNumeralsForGivenRepeatableNumeral(10);
 
 
