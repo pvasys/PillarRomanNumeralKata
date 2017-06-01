@@ -47,6 +47,7 @@ namespace VasysRomanNumeralsKata.Converters
             return numeralLookup.Keys.Max();
         }
 
+        string romanNumeralResultCache = null;
         public string GenerateRomanNumeralRepresentation()
         {
             long currentNumeral = LargestNumeral();
@@ -64,7 +65,8 @@ namespace VasysRomanNumeralsKata.Converters
                 romanNumeralResult.Append(numeralLookup[1]);
                 remainder -= 1;
             }
-            return romanNumeralResult.ToString();
+            romanNumeralResultCache = romanNumeralResult.ToString();
+            return romanNumeralResultCache;
         }
 
         private void CalculateNumeralsForRepeatableNumeralValue(long repeatableValue)
