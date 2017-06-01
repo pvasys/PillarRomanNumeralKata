@@ -77,5 +77,27 @@ namespace VasysRomanNumeralsKataTest
             FromRomanNumeral nineteenEightyNine = new FromRomanNumeral("GEGDCCCAC", alternateNumeralValueLookup);
             Assert.IsTrue(1989 == nineteenEightyNine.GenerateArabicRepresentation());
         }
+
+        [TestMethod]
+        public void WhenFromRomanNumeralIsInitializedToUseExpandedRomanNumeralsItReturnsArabic()
+        {
+            // The real numerals over 1000 are letters with bars over them.  Since that isn't easy to
+            //  re-create, I'm substituting alternate letters
+            Dictionary<string, long> expandedNumeralValueLookup = new Dictionary<string, long>(StringComparer.CurrentCultureIgnoreCase)
+            {
+                {"I", 1},
+                {"V", 5},
+                {"X", 10},
+                {"L", 50},
+                {"C", 100},
+                {"D", 500},
+                {"M", 1000},
+                {"B", 5000},
+                {"A", 10000}
+            };
+
+            FromRomanNumeral fourteenThousandTwoHundredSixtyFour = new FromRomanNumeral("AMBCCLXIV", expandedNumeralValueLookup);
+            Assert.IsTrue(14264 == fourteenThousandTwoHundredSixtyFour.GenerateArabicRepresentation());
+        }
     }
 }
