@@ -23,13 +23,18 @@ namespace VasysRomanNumeralsKata
             while (0 < romanNumeralStack.Count)
             {
                 char currentNumeralCharacter = romanNumeralStack.Pop();
+
+                // check for, and skip, unrecognized characters
+                if (!numeralValueLookup.ContainsKey(currentNumeralCharacter))
+                    continue;
+
                 long currentNumeralValue = numeralValueLookup[currentNumeralCharacter];
 
                 if (0 < currentNumeralValue && currentNumeralValue < highestNumeralValue)
                 {
                     currentNumeralValue *= -1;
                 }
-                else
+                else if(0 < currentNumeralValue)
                 {
                     highestNumeralValue = currentNumeralValue;
                 }

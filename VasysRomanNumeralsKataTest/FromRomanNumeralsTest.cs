@@ -20,5 +20,11 @@ namespace VasysRomanNumeralsKataTest
         {
             Assert.IsTrue(6 == "VI".ParseAsRomanNumeralToLong());
         }
+
+        [TestMethod]
+        public void WhenStringExtensionIsPassedARomanNumeralWithUnrecognizedCharactersItReturnsArabicRepresentingTheCharactersRecognized()
+        {
+            Assert.IsTrue(4 == "I V".ParseAsRomanNumeralToLong());
+        }
     }
 }
