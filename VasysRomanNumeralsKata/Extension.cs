@@ -20,8 +20,8 @@ namespace VasysRomanNumeralsKata
 
         public static long ParseAsRomanNumeral(this string romanNumeral)
         {
-            FromRomanNumeral fromRomanNumeral = new FromRomanNumeral();
-            return fromRomanNumeral.GenerateArabicRepresentation(romanNumeral);
+            FromRomanNumeral fromRomanNumeral = new FromRomanNumeral(romanNumeral);
+            return fromRomanNumeral.GenerateArabicRepresentation();
         }
     }
 }

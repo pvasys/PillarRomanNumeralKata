@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using VasysRomanNumeralsKata;
+using VasysRomanNumeralsKata.Converters;
 
 namespace VasysRomanNumeralsKataTest
 {
@@ -53,6 +54,28 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(9 == "IX".ParseAsRomanNumeral());
             Assert.IsTrue(1066 == "MLXVI".ParseAsRomanNumeral());
             Assert.IsTrue(1989 == "MCMLXXXIX".ParseAsRomanNumeral());
+        }
+
+        [TestMethod]
+        public void WhenFromRomanNumeralIsInitializedToUseAlternateRomanNumeralsItReturnsArabic()
+        {
+            // this is well outside of the scope of the kata, but it is a demonstration of the flexibility of the solution
+            Dictionary<string, long> alternateNumeralValueLookup = new Dictionary<string, long>(StringComparer.CurrentCultureIgnoreCase)
+            {
+                {"A", 1},
+                {"B", 5},
+                {"C", 10},
+                {"D", 50},
+                {"E", 100},
+                {"F", 500},
+                {"G", 1000}
+            };
+
+            FromRomanNumeral fourteen = new FromRomanNumeral("CAB", alternateNumeralValueLookup);
+            Assert.IsTrue(14 == fourteen.GenerateArabicRepresentation());
+
+            FromRomanNumeral nineteenEightyNine = new FromRomanNumeral("GEGDCCCAC", alternateNumeralValueLookup);
+            Assert.IsTrue(1989 == nineteenEightyNine.GenerateArabicRepresentation());
         }
     }
 }

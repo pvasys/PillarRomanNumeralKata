@@ -6,7 +6,7 @@ namespace VasysRomanNumeralsKata.Converters
 {
     public class FromRomanNumeral
     {
-        private readonly Dictionary<string, long> numeralValueLookup = new Dictionary<string, long>(StringComparer.CurrentCultureIgnoreCase)
+        private Dictionary<string, long> numeralValueLookup = new Dictionary<string, long>(StringComparer.CurrentCultureIgnoreCase)
         {
             {"I", 1},
             {"V", 5},
@@ -17,7 +17,20 @@ namespace VasysRomanNumeralsKata.Converters
             {"M", 1000}
         };
 
-        public long GenerateArabicRepresentation(string romanNumeral)
+        private string romanNumeral = null;
+
+        public FromRomanNumeral(string romanNumeralInput)
+        {
+            romanNumeral = romanNumeralInput;
+        }
+
+        public FromRomanNumeral(string romanNumeralInput, Dictionary<string, long> alternateNumeralValueLookup)
+        {
+            romanNumeral = romanNumeralInput;
+            numeralValueLookup = alternateNumeralValueLookup;
+        }
+
+        public long GenerateArabicRepresentation()
         {
             long runningTotal = 0;
             long highestNumeralValue = 0;
