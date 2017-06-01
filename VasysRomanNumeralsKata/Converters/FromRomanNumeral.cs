@@ -30,8 +30,12 @@ namespace VasysRomanNumeralsKata.Converters
             numeralValueLookup = alternateNumeralValueLookup;
         }
 
+        long? arabicRepresentation = null;
         public long GenerateArabicRepresentation()
         {
+            if (null != arabicRepresentation)
+                return (long)arabicRepresentation;
+
             long runningTotal = 0;
             long highestNumeralValue = 0;
 
@@ -59,7 +63,9 @@ namespace VasysRomanNumeralsKata.Converters
                 }
                 runningTotal += currentNumeralValue;
             }
-            return runningTotal;
+
+            arabicRepresentation = runningTotal;
+            return (long)arabicRepresentation;
         }
     }
 }
