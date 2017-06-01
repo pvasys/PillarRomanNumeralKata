@@ -11,5 +11,11 @@ namespace VasysRomanNumeralsKata
             RomanNumeral romanNumeral = new RomanNumeral(baseTenNumber);
             return romanNumeral.GenerateRomanNumeralRepresentation();
         }
+
+        public static int ParseAsRomanNumeralToInt(this string romanNumeral)
+        {
+            FromRomanNumeral fromRomanNumeral = new FromRomanNumeral();
+            return fromRomanNumeral.GenerateArabicRepresentation(romanNumeral);
+        }
     }
 }
