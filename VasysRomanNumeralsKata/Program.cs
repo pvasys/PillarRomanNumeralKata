@@ -6,8 +6,8 @@ namespace VasysRomanNumeralsKata
     {
         static void Main(string[] args)
         {
-            int numeral = 0;
-            Int32.TryParse(args[0], out numeral);
+            long numeral = 0;
+            Int64.TryParse(args[0], out numeral);
             string romanNumeral = numeral.ToRomanNumeral();
             Console.WriteLine(romanNumeral);
         }

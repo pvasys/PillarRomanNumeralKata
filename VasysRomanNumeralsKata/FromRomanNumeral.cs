@@ -6,7 +6,7 @@ namespace VasysRomanNumeralsKata
 {
     public class FromRomanNumeral
     {
-        public int GenerateArabicRepresentation(string romanNumeral)
+        public long GenerateArabicRepresentation(string romanNumeral)
         {
             return 10;
         }

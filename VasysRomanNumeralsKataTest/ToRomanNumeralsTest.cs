@@ -10,8 +10,7 @@ namespace VasysRomanNumeralsKataTest
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedTenItReturnsX()
         {
-            int ten = 10;
-            Assert.IsTrue(ten.ToRomanNumeral() == "X");
+            Assert.IsTrue(10.ToRomanNumeral() == "X");
         }
 
         [TestMethod]
@@ -56,6 +55,13 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(1989.ToRomanNumeral() == "MCMLXXXIX");
             int maxNumeral = 3999;
             Assert.IsTrue(maxNumeral.ToRomanNumeral() == "MMMCMXCIX");
+        }
+
+        [TestMethod]
+        public void WhenRomanNumeralExtensionIsPassedA64BitIntegerItReturnsARomanNumeral()
+        {
+            Assert.IsTrue(1066L.ToRomanNumeral() == "MLXVI");
+            Assert.IsTrue(1989L.ToRomanNumeral() == "MCMLXXXIX");
         }
 
         [TestMethod]
