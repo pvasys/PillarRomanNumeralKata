@@ -26,7 +26,7 @@ namespace VasysRomanNumeralsKata.Converters
                 numeralValueLookup = alternateNumeralValueLookup;
         }
 
-        long? arabicRepresentationCache = null;
+        private long? arabicRepresentationCache = null;
         public long GenerateArabicRepresentation()
         {
             if (null != arabicRepresentationCache)

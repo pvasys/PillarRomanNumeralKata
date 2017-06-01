@@ -42,12 +42,15 @@ namespace VasysRomanNumeralsKata.Converters
         private static readonly long radix = 10;
         private static readonly long factorDifferenceBetweenRepeatableNumeralAndPartialStep = 2;
 
-        private static long LargestNumeral()
+        private long? largestNumeralCache = null;
+        private long LargestNumeral()
         {
-            return numeralLookup.Keys.Max();
+            if (null == largestNumeralCache)
+                largestNumeralCache = numeralLookup.Keys.Max();
+            return (long)largestNumeralCache;
         }
 
-        string romanNumeralResultCache = null;
+        private string romanNumeralResultCache = null;
         public string GenerateRomanNumeralRepresentation()
         {
             long currentNumeral = LargestNumeral();
