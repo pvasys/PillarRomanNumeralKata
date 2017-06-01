@@ -94,5 +94,30 @@ namespace VasysRomanNumeralsKataTest
             ToRomanNumeral nineteenEightyNine = new ToRomanNumeral(1989, alternateNumeralLookup);
             Assert.IsTrue("GEGDCCCAC" == nineteenEightyNine.GenerateRomanNumeralRepresentation());
         }
+
+        [TestMethod]
+        public void WhenToRomanNumeralIsInitializedToUseExpandedRomanNumeralsItReturnsARomanNumeral()
+        {
+            // The real numerals over 1000 are letters with bars over them.  Since that isn't easy to
+            //  re-create, I'm substituting alternate letters
+            Dictionary<long, char> expandedNumeralLookup = new Dictionary<long, char>()
+            {
+                {10000, 'A'},
+                {5000, 'B'},
+                {1000, 'M'},
+                {500, 'D'},
+                {100, 'C'},
+                {50, 'L'},
+                {10, 'X'},
+                {5, 'V'},
+                {1, 'I'}
+            };
+
+            ToRomanNumeral fourteenThousandTwoHundredSixtyFour = new ToRomanNumeral(14264, expandedNumeralLookup);
+            Assert.IsTrue("AMBCCLXIV" == fourteenThousandTwoHundredSixtyFour.GenerateRomanNumeralRepresentation());
+
+            int overMaxNumeral = 40000;
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => overMaxNumeral.ToRomanNumeral());
+        }
     }
 }
