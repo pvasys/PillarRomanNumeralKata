@@ -12,7 +12,8 @@ namespace VasysRomanNumeralsKata
             {"V", 5},
             {"X", 10},
             {"L", 50},
-            {"C", 100}
+            {"C", 100},
+            {"D", 500}
         };
 
         public long GenerateArabicRepresentation(string romanNumeral)

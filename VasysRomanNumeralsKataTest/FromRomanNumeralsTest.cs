@@ -21,6 +21,7 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(6 == "VI".ParseAsRomanNumeralToLong());
             Assert.IsTrue(46 == "XLVI".ParseAsRomanNumeralToLong());
             Assert.IsTrue(104 == "CIV".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(501 == "DI".ParseAsRomanNumeralToLong());
         }
 
         [TestMethod]
