@@ -5,13 +5,13 @@ using System.Text;
 
 namespace VasysRomanNumeralsKata
 {
-    public class RomanNumeral
+    public class ToRomanNumeral
     {
         private long? _baseTenRepresentation = null;
         private long remainder = 0;
         private StringBuilder romanNumeralResult = new StringBuilder();
 
-        public RomanNumeral(long baseTenNumber)
+        public ToRomanNumeral(long baseTenNumber)
         {
             _baseTenRepresentation = baseTenNumber;
             long largestSupportedValue = (LargestNumeral() * 4) - 1;
