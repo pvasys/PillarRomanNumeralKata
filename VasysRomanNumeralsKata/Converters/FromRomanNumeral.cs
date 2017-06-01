@@ -19,15 +19,11 @@ namespace VasysRomanNumeralsKata.Converters
 
         private string romanNumeral = null;
 
-        public FromRomanNumeral(string romanNumeralInput)
+        public FromRomanNumeral(string romanNumeralInput, Dictionary<string, long> alternateNumeralValueLookup = null)
         {
             romanNumeral = romanNumeralInput;
-        }
-
-        public FromRomanNumeral(string romanNumeralInput, Dictionary<string, long> alternateNumeralValueLookup)
-        {
-            romanNumeral = romanNumeralInput;
-            numeralValueLookup = alternateNumeralValueLookup;
+            if(null != alternateNumeralValueLookup)
+                numeralValueLookup = alternateNumeralValueLookup;
         }
 
         long? arabicRepresentationCache = null;
