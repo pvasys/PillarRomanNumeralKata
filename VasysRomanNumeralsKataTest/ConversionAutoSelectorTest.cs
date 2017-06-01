@@ -10,9 +10,15 @@ namespace VasysRomanNumeralsKataTest
     public class ConversionAutoSelectorTest
     {
         [TestMethod]
-        public void WhenAutoConversionSelectorIsPassedArabicCharactersItReturnsRomanNumerals()
+        public void WhenAutoConversionSelectorIsPassedArabicNumeralsItReturnsRomanNumerals()
         {
             Assert.IsTrue("IX" == ConversionAutoSelector.ConvertInput("9"));
+        }
+
+        [TestMethod]
+        public void WhenAutoConversionSelectorIsPassedRomanNumeralsItReturnsArabicNumerals()
+        {
+            Assert.IsTrue("9" == ConversionAutoSelector.ConvertInput("IX"));
         }
     }
 }
