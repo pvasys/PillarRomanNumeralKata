@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VasysRomanNumeralsKata
+namespace VasysRomanNumeralsKata.Converters
 {
     public class FromRomanNumeral
     {
