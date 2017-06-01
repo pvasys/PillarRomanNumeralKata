@@ -46,4 +46,4 @@ If specified, add logic, messaging, and tests around enforcing the rules when co
 
 Naming could (always) be improved.
 
-More tests could be added.  
+More tests could be added, especially around changing the radix and sub step factor.
