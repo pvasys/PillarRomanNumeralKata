@@ -22,6 +22,7 @@ namespace VasysRomanNumeralsKataTest
             Assert.IsTrue(46 == "XLVI".ParseAsRomanNumeralToLong());
             Assert.IsTrue(104 == "CIV".ParseAsRomanNumeralToLong());
             Assert.IsTrue(501 == "DI".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(1550 == "MDL".ParseAsRomanNumeralToLong());
         }
 
         [TestMethod]
@@ -42,6 +43,16 @@ namespace VasysRomanNumeralsKataTest
         public void WhenStringExtensionIsPassedARomanNumeralInLowerCaseItReturnsArabic()
         {
             Assert.IsTrue(6 == "vi".ParseAsRomanNumeralToLong());
+        }
+
+        [TestMethod]
+        public void WhenStringExtensionIsPassedARomanNumeralFromKataTestsItReturnsArabic()
+        {
+            Assert.IsTrue(1 == "I".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(3 == "III".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(9 == "IX".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(1066 == "MLXVI".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(1989 == "MCMLXXXIX".ParseAsRomanNumeralToLong());
         }
     }
 }
