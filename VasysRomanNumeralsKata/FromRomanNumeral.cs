@@ -6,11 +6,12 @@ namespace VasysRomanNumeralsKata
 {
     public class FromRomanNumeral
     {
-        private readonly Dictionary<char, long> numeralValueLookup = new Dictionary<char, long>()
+        private readonly Dictionary<string, long> numeralValueLookup = new Dictionary<string, long>(StringComparer.CurrentCultureIgnoreCase)
         {
-            {'I', 1},
-            {'V', 5},
-            {'X', 10}
+            {"I", 1},
+            {"V", 5},
+            {"X", 10},
+            {"L", 50}
         };
 
         public long GenerateArabicRepresentation(string romanNumeral)
@@ -22,10 +23,10 @@ namespace VasysRomanNumeralsKata
             Stack<char> romanNumeralStack = new Stack<char>(romanNumeral);
             while (0 < romanNumeralStack.Count)
             {
-                char currentNumeralCharacter = romanNumeralStack.Pop();
+                string currentNumeralCharacter = romanNumeralStack.Pop().ToString();
 
                 // check for, and skip, unrecognized characters
-                if (!numeralValueLookup.ContainsKey(currentNumeralCharacter))
+                if (!numeralValueLookup.ContainsKey(currentNumeralCharacter.ToString()))
                     continue;
 
                 long currentNumeralValue = numeralValueLookup[currentNumeralCharacter];
@@ -34,6 +35,8 @@ namespace VasysRomanNumeralsKata
                 {
                     currentNumeralValue *= -1;
                 }
+
+                // sanity check
                 else if(0 < currentNumeralValue)
                 {
                     highestNumeralValue = currentNumeralValue;
