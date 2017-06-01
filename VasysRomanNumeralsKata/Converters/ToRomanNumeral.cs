@@ -7,17 +7,17 @@ namespace VasysRomanNumeralsKata.Converters
 {
     public class ToRomanNumeral
     {
-        private long? _baseTenRepresentation = null;
         private long remainder = 0;
         private StringBuilder romanNumeralResult = new StringBuilder();
 
-        public ToRomanNumeral(long baseTenNumber)
+        public ToRomanNumeral(long baseTenNumber, Dictionary<long, char> alternateNumeralLookup = null)
         {
-            _baseTenRepresentation = baseTenNumber;
+            if (null != alternateNumeralLookup)
+                numeralLookup = alternateNumeralLookup;
             long largestSupportedValue = (LargestNumeral() * 4) - 1;
-            if (_baseTenRepresentation < 1 || _baseTenRepresentation > largestSupportedValue)
+            if (baseTenNumber < 1 || baseTenNumber > largestSupportedValue)
                 throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
-            remainder = (long)_baseTenRepresentation;
+            remainder = (long)baseTenNumber;
         }
 
         // Values can be added, provided that they are added in pairs, where the first value is 
@@ -25,7 +25,7 @@ namespace VasysRomanNumeralsKata.Converters
         //  and the second value is the first value divided by the 
         //  factorDifferenceBetweenRepeatableNumeralAndPartialStep variable (originally 2)
         //  (e.g. if 1000 is the largest existing value, then 10000 and 5000 can be added).
-        private static readonly Dictionary<long, char> numeralLookup = new Dictionary<long, char>()
+        private static Dictionary<long, char> numeralLookup = new Dictionary<long, char>()
         {
             {1000, 'M'},
             {500, 'D'},

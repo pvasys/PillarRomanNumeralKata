@@ -1,6 +1,8 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VasysRomanNumeralsKata;
+using System.Collections.Generic;
+using VasysRomanNumeralsKata.Converters;
 
 namespace VasysRomanNumeralsKataTest
 {
@@ -70,6 +72,27 @@ namespace VasysRomanNumeralsKataTest
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => 0.ToRomanNumeral());
             int overMaxNumeral = 4000;
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => overMaxNumeral.ToRomanNumeral());
+        }
+
+        [TestMethod]
+        public void WhenToRomanNumeralIsInitializedToUseAlternateRomanNumeralsItReturnsARomanNumeral()
+        {
+            Dictionary<long, char> alternateNumeralLookup = new Dictionary<long, char>()
+            {
+                {1000, 'G'},
+                {500, 'F'},
+                {100, 'E'},
+                {50, 'D'},
+                {10, 'C'},
+                {5, 'B'},
+                {1, 'A'}
+            };
+
+            ToRomanNumeral fourteen = new ToRomanNumeral(14, alternateNumeralLookup);
+            Assert.IsTrue("CAB" == fourteen.GenerateRomanNumeralRepresentation());
+
+            ToRomanNumeral nineteenEightyNine = new ToRomanNumeral(1989, alternateNumeralLookup);
+            Assert.IsTrue("GEGDCCCAC" == nineteenEightyNine.GenerateRomanNumeralRepresentation());
         }
     }
 }
