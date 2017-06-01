@@ -43,3 +43,7 @@ Next steps could involve creating a desktop or web UI to leverage the functional
 Adding a CI solution that builds after every commit to master and runs tests would also be valuable.
 
 If specified, add logic, messaging, and tests around enforcing the rules when converting roman numerals to arabic.
+
+Naming could (always) be improved.
+
+More tests could be added.  
