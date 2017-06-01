@@ -20,6 +20,7 @@ namespace VasysRomanNumeralsKataTest
         {
             Assert.IsTrue(6 == "VI".ParseAsRomanNumeralToLong());
             Assert.IsTrue(46 == "XLVI".ParseAsRomanNumeralToLong());
+            Assert.IsTrue(104 == "CIV".ParseAsRomanNumeralToLong());
         }
 
         [TestMethod]
@@ -27,6 +28,13 @@ namespace VasysRomanNumeralsKataTest
         {
             Assert.IsTrue(4 == "I V".ParseAsRomanNumeralToLong());
             Assert.IsTrue(4 == "IQV".ParseAsRomanNumeralToLong());
+        }
+
+        [TestMethod]
+        public void WhenStringExtensionIsPassedARomanNumeralThatViolatesSingleTheSubstractionRuleItReturnsArabic()
+        {
+            // See "Considerations" section of the README file for reasoning behind supporting the conversion of this type of invalid data.
+            Assert.IsTrue(3 == "IIV".ParseAsRomanNumeralToLong());
         }
 
         [TestMethod]
