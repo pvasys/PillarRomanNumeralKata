@@ -10,58 +10,58 @@ namespace VasysRomanNumeralsKataTest
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedTenItReturnsX()
         {
-            Assert.IsTrue(10.ToRomanNumeral() == "X");
+            Assert.IsTrue("X" == 10.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedNumbersDivisibleByOneHundredItReturnsARomanNumeral()
         {
-            Assert.IsTrue(1000.ToRomanNumeral() == "M");
-            Assert.IsTrue(900.ToRomanNumeral() == "CM");
-            Assert.IsTrue(500.ToRomanNumeral() == "D");
-            Assert.IsTrue(400.ToRomanNumeral() == "CD");
-            Assert.IsTrue(100.ToRomanNumeral() == "C");
-            Assert.IsTrue(200.ToRomanNumeral() == "CC");
-            Assert.IsTrue(300.ToRomanNumeral() == "CCC");
-            Assert.IsTrue(2000.ToRomanNumeral() == "MM");
-            Assert.IsTrue(600.ToRomanNumeral() == "DC");
-            Assert.IsTrue(700.ToRomanNumeral() == "DCC");
-            Assert.IsTrue(800.ToRomanNumeral() == "DCCC");
+            Assert.IsTrue("M" == 1000.ToRomanNumeral());
+            Assert.IsTrue("CM" == 900.ToRomanNumeral());
+            Assert.IsTrue("D" == 500.ToRomanNumeral());
+            Assert.IsTrue("CD" == 400.ToRomanNumeral());
+            Assert.IsTrue("C" == 100.ToRomanNumeral());
+            Assert.IsTrue("CC" == 200.ToRomanNumeral());
+            Assert.IsTrue("CCC" == 300.ToRomanNumeral());
+            Assert.IsTrue("MM" == 2000.ToRomanNumeral());
+            Assert.IsTrue("DC" == 600.ToRomanNumeral());
+            Assert.IsTrue("DCC" == 700.ToRomanNumeral());
+            Assert.IsTrue("DCCC" == 800.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedNumbersDivisibleByTenItReturnsARomanNumeral()
         {
-            Assert.IsTrue(90.ToRomanNumeral() == "XC");
-            Assert.IsTrue(60.ToRomanNumeral() == "LX");
-            Assert.IsTrue(40.ToRomanNumeral() == "XL");
-            Assert.IsTrue(30.ToRomanNumeral() == "XXX");
+            Assert.IsTrue("XC" == 90.ToRomanNumeral());
+            Assert.IsTrue("LX" == 60.ToRomanNumeral());
+            Assert.IsTrue("XL" == 40.ToRomanNumeral());
+            Assert.IsTrue("XXX" == 30.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedSingleDigitNumbersItReturnsARomanNumeral()
         {
-            Assert.IsTrue(9.ToRomanNumeral() == "IX");
-            Assert.IsTrue(6.ToRomanNumeral() == "VI");
-            Assert.IsTrue(4.ToRomanNumeral() == "IV");
-            Assert.IsTrue(3.ToRomanNumeral() == "III");
-            Assert.IsTrue(1.ToRomanNumeral() == "I");
+            Assert.IsTrue("IX" == 9.ToRomanNumeral());
+            Assert.IsTrue("VI" == 6.ToRomanNumeral());
+            Assert.IsTrue("IV" == 4.ToRomanNumeral());
+            Assert.IsTrue("III" == 3.ToRomanNumeral());
+            Assert.IsTrue("I" == 1.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedComplexNumbersItReturnsARomanNumeral()
         {
-            Assert.IsTrue(1066.ToRomanNumeral() == "MLXVI");
-            Assert.IsTrue(1989.ToRomanNumeral() == "MCMLXXXIX");
+            Assert.IsTrue("MLXVI" ==1066.ToRomanNumeral());
+            Assert.IsTrue("MCMLXXXIX" == 1989.ToRomanNumeral());
             int maxNumeral = 3999;
-            Assert.IsTrue(maxNumeral.ToRomanNumeral() == "MMMCMXCIX");
+            Assert.IsTrue("MMMCMXCIX" == maxNumeral.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedA64BitIntegerItReturnsARomanNumeral()
         {
-            Assert.IsTrue(1066L.ToRomanNumeral() == "MLXVI");
-            Assert.IsTrue(1989L.ToRomanNumeral() == "MCMLXXXIX");
+            Assert.IsTrue("MLXVI" == 1066L.ToRomanNumeral());
+            Assert.IsTrue("MCMLXXXIX" == 1989L.ToRomanNumeral());
         }
 
         [TestMethod]

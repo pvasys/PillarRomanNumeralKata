@@ -59,7 +59,7 @@ namespace VasysRomanNumeralsKata
                 currentNumeral /= radix;
             }
 
-            while (remainder > 0)
+            while (0 < remainder)
             {
                 romanNumeralResult.Append(numeralLookup[1]);
                 remainder -= 1;

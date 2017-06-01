@@ -12,7 +12,7 @@ namespace VasysRomanNumeralsKataTest
         [TestMethod]
         public void WhenStringExtensionIsPassedXItReturns10()
         {
-            Assert.IsTrue("X".ParseAsRomanNumeralToLong() == 10);
+            Assert.IsTrue(10 == "X".ParseAsRomanNumeralToLong());
         }
     }
 }
