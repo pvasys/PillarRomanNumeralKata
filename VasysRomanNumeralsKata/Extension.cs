@@ -18,7 +18,7 @@ namespace VasysRomanNumeralsKata
             return ToRomanNumeral((long)baseTenNumber);
         }
 
-        public static long ParseAsRomanNumeralToLong(this string romanNumeral)
+        public static long ParseAsRomanNumeral(this string romanNumeral)
         {
             FromRomanNumeral fromRomanNumeral = new FromRomanNumeral();
             return fromRomanNumeral.GenerateArabicRepresentation(romanNumeral);

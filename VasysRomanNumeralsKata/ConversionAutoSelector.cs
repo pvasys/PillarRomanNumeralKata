@@ -13,7 +13,7 @@ namespace VasysRomanNumeralsKata
             if (Int64.TryParse(input, out numeral))
                 outputValue = numeral.ToRomanNumeral();
             else
-                outputValue = input.ParseAsRomanNumeralToLong().ToString();
+                outputValue = input.ParseAsRomanNumeral().ToString();
             return outputValue;
         }
     }
