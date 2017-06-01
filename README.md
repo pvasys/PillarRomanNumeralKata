@@ -22,7 +22,7 @@ To run the application:
 - Open "Developer Command Prompt for VS 2017"
 - Navigate to the location of the .sln file
 - Navigate to the subfolder VasysRomanNumeralsKata
-- type: dotnet run <arabic number>
+- type: dotnet run <arabic number or roman numeral>
 
 Considerations:
 All changes made were performed on a system prior to initial production release.  Some changes such as renaming classes, rearranging code, and fixing small mistakes may not have been undertaken if the code was already in production.
