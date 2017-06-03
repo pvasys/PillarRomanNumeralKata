@@ -13,47 +13,47 @@ namespace VasysRomanNumeralsKataTest
         [TestMethod]
         public void WhenStringExtensionIsPassedXItReturns10()
         {
-            Assert.IsTrue(10 == "X".ParseAsRomanNumeral());
+            Assert.AreEqual(10, "X".ParseAsRomanNumeral());
         }
 
         [TestMethod]
         public void WhenStringExtensionIsPassedARomanNumeralItReturnsArabic()
         {
-            Assert.IsTrue(6 == "VI".ParseAsRomanNumeral());
-            Assert.IsTrue(46 == "XLVI".ParseAsRomanNumeral());
-            Assert.IsTrue(104 == "CIV".ParseAsRomanNumeral());
-            Assert.IsTrue(501 == "DI".ParseAsRomanNumeral());
-            Assert.IsTrue(1550 == "MDL".ParseAsRomanNumeral());
+            Assert.AreEqual(6, "VI".ParseAsRomanNumeral());
+            Assert.AreEqual(46, "XLVI".ParseAsRomanNumeral());
+            Assert.AreEqual(104, "CIV".ParseAsRomanNumeral());
+            Assert.AreEqual(501, "DI".ParseAsRomanNumeral());
+            Assert.AreEqual(1550, "MDL".ParseAsRomanNumeral());
         }
 
         [TestMethod]
         public void WhenStringExtensionIsPassedARomanNumeralWithUnrecognizedCharactersItReturnsArabicRepresentingTheCharactersRecognized()
         {
-            Assert.IsTrue(4 == "I V".ParseAsRomanNumeral());
-            Assert.IsTrue(4 == "IQV".ParseAsRomanNumeral());
+            Assert.AreEqual(4, "I V".ParseAsRomanNumeral());
+            Assert.AreEqual(4, "IQV".ParseAsRomanNumeral());
         }
 
         [TestMethod]
         public void WhenStringExtensionIsPassedARomanNumeralThatViolatesSingleTheSubstractionRuleItReturnsArabic()
         {
             // See "Considerations" section of the README file for reasoning behind supporting the conversion of this type of invalid data.
-            Assert.IsTrue(3 == "IIV".ParseAsRomanNumeral());
+            Assert.AreEqual(3, "IIV".ParseAsRomanNumeral());
         }
 
         [TestMethod]
         public void WhenStringExtensionIsPassedARomanNumeralInLowerCaseItReturnsArabic()
         {
-            Assert.IsTrue(6 == "vi".ParseAsRomanNumeral());
+            Assert.AreEqual(6, "vi".ParseAsRomanNumeral());
         }
 
         [TestMethod]
         public void WhenStringExtensionIsPassedARomanNumeralFromKataTestsItReturnsArabic()
         {
-            Assert.IsTrue(1 == "I".ParseAsRomanNumeral());
-            Assert.IsTrue(3 == "III".ParseAsRomanNumeral());
-            Assert.IsTrue(9 == "IX".ParseAsRomanNumeral());
-            Assert.IsTrue(1066 == "MLXVI".ParseAsRomanNumeral());
-            Assert.IsTrue(1989 == "MCMLXXXIX".ParseAsRomanNumeral());
+            Assert.AreEqual(1, "I".ParseAsRomanNumeral());
+            Assert.AreEqual(3, "III".ParseAsRomanNumeral());
+            Assert.AreEqual(9, "IX".ParseAsRomanNumeral());
+            Assert.AreEqual(1066, "MLXVI".ParseAsRomanNumeral());
+            Assert.AreEqual(1989, "MCMLXXXIX".ParseAsRomanNumeral());
         }
 
         [TestMethod]
@@ -72,10 +72,10 @@ namespace VasysRomanNumeralsKataTest
             };
 
             FromRomanNumeral fourteen = new FromRomanNumeral("CAB", alternateNumeralValueLookup);
-            Assert.IsTrue(14 == fourteen.GenerateArabicRepresentation());
+            Assert.AreEqual(14, fourteen.GenerateArabicRepresentation());
 
             FromRomanNumeral nineteenEightyNine = new FromRomanNumeral("GEGDCCCAC", alternateNumeralValueLookup);
-            Assert.IsTrue(1989 == nineteenEightyNine.GenerateArabicRepresentation());
+            Assert.AreEqual(1989, nineteenEightyNine.GenerateArabicRepresentation());
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace VasysRomanNumeralsKataTest
             };
 
             FromRomanNumeral fourteenThousandTwoHundredSixtyFour = new FromRomanNumeral("AMBCCLXIV", expandedNumeralValueLookup);
-            Assert.IsTrue(14264 == fourteenThousandTwoHundredSixtyFour.GenerateArabicRepresentation());
+            Assert.AreEqual(14264, fourteenThousandTwoHundredSixtyFour.GenerateArabicRepresentation());
         }
     }
 }

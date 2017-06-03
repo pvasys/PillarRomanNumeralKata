@@ -12,58 +12,58 @@ namespace VasysRomanNumeralsKataTest
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedTenItReturnsX()
         {
-            Assert.IsTrue("X" == 10.ToRomanNumeral());
+            Assert.AreEqual("X", 10.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedNumbersDivisibleByOneHundredItReturnsARomanNumeral()
         {
-            Assert.IsTrue("M" == 1000.ToRomanNumeral());
-            Assert.IsTrue("CM" == 900.ToRomanNumeral());
-            Assert.IsTrue("D" == 500.ToRomanNumeral());
-            Assert.IsTrue("CD" == 400.ToRomanNumeral());
-            Assert.IsTrue("C" == 100.ToRomanNumeral());
-            Assert.IsTrue("CC" == 200.ToRomanNumeral());
-            Assert.IsTrue("CCC" == 300.ToRomanNumeral());
-            Assert.IsTrue("MM" == 2000.ToRomanNumeral());
-            Assert.IsTrue("DC" == 600.ToRomanNumeral());
-            Assert.IsTrue("DCC" == 700.ToRomanNumeral());
-            Assert.IsTrue("DCCC" == 800.ToRomanNumeral());
+            Assert.AreEqual("M", 1000.ToRomanNumeral());
+            Assert.AreEqual("CM", 900.ToRomanNumeral());
+            Assert.AreEqual("D", 500.ToRomanNumeral());
+            Assert.AreEqual("CD", 400.ToRomanNumeral());
+            Assert.AreEqual("C", 100.ToRomanNumeral());
+            Assert.AreEqual("CC", 200.ToRomanNumeral());
+            Assert.AreEqual("CCC", 300.ToRomanNumeral());
+            Assert.AreEqual("MM", 2000.ToRomanNumeral());
+            Assert.AreEqual("DC", 600.ToRomanNumeral());
+            Assert.AreEqual("DCC", 700.ToRomanNumeral());
+            Assert.AreEqual("DCCC", 800.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedNumbersDivisibleByTenItReturnsARomanNumeral()
         {
-            Assert.IsTrue("XC" == 90.ToRomanNumeral());
-            Assert.IsTrue("LX" == 60.ToRomanNumeral());
-            Assert.IsTrue("XL" == 40.ToRomanNumeral());
-            Assert.IsTrue("XXX" == 30.ToRomanNumeral());
+            Assert.AreEqual("XC", 90.ToRomanNumeral());
+            Assert.AreEqual("LX", 60.ToRomanNumeral());
+            Assert.AreEqual("XL", 40.ToRomanNumeral());
+            Assert.AreEqual("XXX", 30.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedSingleDigitNumbersItReturnsARomanNumeral()
         {
-            Assert.IsTrue("IX" == 9.ToRomanNumeral());
-            Assert.IsTrue("VI" == 6.ToRomanNumeral());
-            Assert.IsTrue("IV" == 4.ToRomanNumeral());
-            Assert.IsTrue("III" == 3.ToRomanNumeral());
-            Assert.IsTrue("I" == 1.ToRomanNumeral());
+            Assert.AreEqual("IX", 9.ToRomanNumeral());
+            Assert.AreEqual("VI", 6.ToRomanNumeral());
+            Assert.AreEqual("IV", 4.ToRomanNumeral());
+            Assert.AreEqual("III", 3.ToRomanNumeral());
+            Assert.AreEqual("I", 1.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedComplexNumbersItReturnsARomanNumeral()
         {
-            Assert.IsTrue("MLXVI" ==1066.ToRomanNumeral());
-            Assert.IsTrue("MCMLXXXIX" == 1989.ToRomanNumeral());
+            Assert.AreEqual("MLXVI",1066.ToRomanNumeral());
+            Assert.AreEqual("MCMLXXXIX", 1989.ToRomanNumeral());
             int maxNumeral = 3999;
-            Assert.IsTrue("MMMCMXCIX" == maxNumeral.ToRomanNumeral());
+            Assert.AreEqual("MMMCMXCIX", maxNumeral.ToRomanNumeral());
         }
 
         [TestMethod]
         public void WhenRomanNumeralExtensionIsPassedA64BitIntegerItReturnsARomanNumeral()
         {
-            Assert.IsTrue("MLXVI" == 1066L.ToRomanNumeral());
-            Assert.IsTrue("MCMLXXXIX" == 1989L.ToRomanNumeral());
+            Assert.AreEqual("MLXVI", 1066L.ToRomanNumeral());
+            Assert.AreEqual("MCMLXXXIX", 1989L.ToRomanNumeral());
         }
 
         [TestMethod]
@@ -89,10 +89,10 @@ namespace VasysRomanNumeralsKataTest
             };
 
             ToRomanNumeral fourteen = new ToRomanNumeral(14, alternateNumeralLookup);
-            Assert.IsTrue("CAB" == fourteen.GenerateRomanNumeralRepresentation());
+            Assert.AreEqual("CAB", fourteen.GenerateRomanNumeralRepresentation());
 
             ToRomanNumeral nineteenEightyNine = new ToRomanNumeral(1989, alternateNumeralLookup);
-            Assert.IsTrue("GEGDCCCAC" == nineteenEightyNine.GenerateRomanNumeralRepresentation());
+            Assert.AreEqual("GEGDCCCAC", nineteenEightyNine.GenerateRomanNumeralRepresentation());
         }
 
         [TestMethod]
@@ -114,7 +114,7 @@ namespace VasysRomanNumeralsKataTest
             };
 
             ToRomanNumeral fourteenThousandTwoHundredSixtyFour = new ToRomanNumeral(14264, expandedNumeralLookup);
-            Assert.IsTrue("AMBCCLXIV" == fourteenThousandTwoHundredSixtyFour.GenerateRomanNumeralRepresentation());
+            Assert.AreEqual("AMBCCLXIV", fourteenThousandTwoHundredSixtyFour.GenerateRomanNumeralRepresentation());
 
             int overMaxNumeral = 40000;
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => overMaxNumeral.ToRomanNumeral());
