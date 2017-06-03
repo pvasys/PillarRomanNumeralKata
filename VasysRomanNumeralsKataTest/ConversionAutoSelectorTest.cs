@@ -20,5 +20,11 @@ namespace VasysRomanNumeralsKataTest
         {
             Assert.IsTrue("9" == ConversionAutoSelector.ConvertInput("IX"));
         }
+
+        [TestMethod]
+        public void WhenAutoConversionSelectorIsPassedEmptyStringItThrowsAnException()
+        {
+            Assert.ThrowsException<ArgumentException>(() => ConversionAutoSelector.ConvertInput(""));
+        }
     }
 }
