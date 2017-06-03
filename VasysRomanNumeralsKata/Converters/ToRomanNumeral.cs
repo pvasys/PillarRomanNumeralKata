@@ -13,10 +13,14 @@ namespace VasysRomanNumeralsKata.Converters
         public ToRomanNumeral(long baseTenNumber, Dictionary<long, char> alternateNumeralLookup = null)
         {
             if (null != alternateNumeralLookup)
+            {
                 numeralLookup = alternateNumeralLookup;
+            }
             long largestSupportedValue = (LargestNumeral() * 4) - 1;
             if (baseTenNumber < 1 || baseTenNumber > largestSupportedValue)
+            {
                 throw new ArgumentOutOfRangeException("Value cannot be represented with the given set of roman numeral values");
+            }
             remainder = (long)baseTenNumber;
         }
 
@@ -46,7 +50,9 @@ namespace VasysRomanNumeralsKata.Converters
         private long LargestNumeral()
         {
             if (null == largestNumeralCache)
+            {
                 largestNumeralCache = numeralLookup.Keys.Max();
+            }
             return (long)largestNumeralCache;
         }
 

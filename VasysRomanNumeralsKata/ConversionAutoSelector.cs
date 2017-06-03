@@ -16,9 +16,13 @@ namespace VasysRomanNumeralsKata
             string outputValue = null;
             long numeral = 0;
             if (Int64.TryParse(input, out numeral))
+            {
                 outputValue = numeral.ToRomanNumeral();
+            }
             else
+            {
                 outputValue = input.ParseAsRomanNumeral().ToString();
+            }
             return outputValue;
         }
     }

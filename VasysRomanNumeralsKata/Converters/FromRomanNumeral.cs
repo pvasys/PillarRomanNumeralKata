@@ -22,15 +22,19 @@ namespace VasysRomanNumeralsKata.Converters
         public FromRomanNumeral(string romanNumeralInput, Dictionary<string, long> alternateNumeralValueLookup = null)
         {
             romanNumeral = romanNumeralInput;
-            if(null != alternateNumeralValueLookup)
+            if (null != alternateNumeralValueLookup)
+            {
                 numeralValueLookup = alternateNumeralValueLookup;
+            }
         }
 
         private long? arabicRepresentationCache = null;
         public long GenerateArabicRepresentation()
         {
             if (null != arabicRepresentationCache)
+            {
                 return (long)arabicRepresentationCache;
+            }
 
             long runningTotal = 0;
             long highestNumeralValue = 0;
@@ -43,7 +47,9 @@ namespace VasysRomanNumeralsKata.Converters
 
                 // check for, and skip, unrecognized characters
                 if (!numeralValueLookup.ContainsKey(currentNumeralCharacter.ToString()))
+                {
                     continue;
+                }
 
                 long currentNumeralValue = numeralValueLookup[currentNumeralCharacter];
 
